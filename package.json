@@ -1,0 +1,10 @@
+{
+  "name": "x-scaffold-fis",
+  "version": "0.0.1",
+  "license": "MIT",
+  "description": "用于FIS的自定义项目脚手架",
+  "scripts": {},
+  "devDependencies": {
+    "vue-cli": "^2.8.2"
+  }
+}

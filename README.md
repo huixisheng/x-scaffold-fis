@@ -28,3 +28,6 @@ $ npm run dev
 ``` bash
 $ npm run build
 ```
+
+## TODO  ##
+- [ ] `cnpm`安装的的`node_modules`本地初始化有问题
