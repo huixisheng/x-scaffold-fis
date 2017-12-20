@@ -1,13 +1,8 @@
-# x-scaffold-fis
-用于FIS的自定义项目脚手架
+# {{ name}}
+
+> {{ description }}
 
 ## 安装 ##
-
-### 项目初始化 ###
-
-``` bash
-$ vue init huixisheng/x-scaffold-fis my-project
-```
 
 ### 安装依赖 ###
 
@@ -28,3 +23,5 @@ $ npm run dev
 ``` bash
 $ npm run build
 ```
+
+**ps:** 或者你可以用`yarn`或者`cnpm`

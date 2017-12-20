@@ -1,0 +1,58 @@
+{
+  "name": "x-scaffold-fis",
+  "version": "0.0.1",
+  "description": "用于FIS的自定义项目脚手架",
+  "main": "fis-conf.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha",
+    "eslint:diff": "node_modules/eslint/bin/eslint.js $(git diff-index HEAD --name-only --diff-filter ACMR |grep '\\.\\(jsx\\|es6\\|js\\|vue\\)$')",
+    "eslint": "cross-env NODE_ENV=production node_modules/eslint/bin/eslint.js --max-warnings 10 --ext .js,.vue src build config test",
+    "dev": "fis3 server clean && fis3 server start -p 9876 && fis3 release -wL",
+    "build": "fis3 release pro"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/huixisheng/x-scaffold-fis.git"
+  },
+  "keywords": [
+    "fis",
+    "scaffold",
+    "template"
+  ],
+  "author": "huixisheng@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/huixisheng/x-scaffold-fis/issues"
+  },
+  "homepage": "https://github.com/huixisheng/x-scaffold-fis",
+  "dependencies": {
+    "animate.css": "3.5.2"
+  },
+  "devDependencies": {
+    "fis-optimizer-html-minifier": "~0.0.9",
+    "fis-optimizer-tinify": "~0.0.8",
+    "fis-parser-marked-template": "~0.0.1",
+    "fis-postpackager-tolist": "0.0.9",
+    "fis-preprocessor-layout": "0.0.1",
+    "fis-spriter-csssprites": "~0.3.6",
+    "fis3": "^3.4.32",
+    "fis3-deploy-http-push2": "~0.0.4",
+    "fis3-deploy-qiniu": "^1.0.8",
+    "fis3-deploy-replace": "~1.0.2",
+    "fis3-deploy-ssh": "~1.0.0",
+    "fis3-lint-csslint": "1.0.2",
+    "fis3-lint-eslint": "~1.0.0",
+    "fis3-lint-htmlhint": "~0.2.3",
+    "fis3-parser-art-template": "~1.0.0",
+    "fis3-postpackager-loader": "~1.3.12",
+    "fis3-postpackager-usemin": "~0.0.1",
+    "fis3-postprocessor-autoprefixer": "~1.0.0",
+    "eslint": "^4.9.0",
+    "eslint-config-style-guide": "0.0.6",
+    "pre-commit": "~1.1.3",
+    "underscore": "~1.7.0",
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1",
+    "x-config-deploy": "^0.0.3"
+  }
+}
