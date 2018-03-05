@@ -25,17 +25,20 @@ const resourcesReplace = [
 ];
 
 const pushServer = [
-  fis.plugin('http-push2', {
-    receiver: config['urlUpload'],
-    to: config['pathAssets'],
-    cacheDir: process.cwd() + '/.cache',
-  }),
+  // fis.plugin('http-push2', {
+  //   receiver: config['urlUpload'],
+  //   to: config['pathAssets'],
+  //   cacheDir: process.cwd() + '/.cache',
+  // }),
 ];
 
 const localDeliver = [
   fis.plugin('local-deliver', {
-    to: config['mapCosmeapi'],
+    to: path.join(__dirname, '../dist'),
   }),
+  // fis.plugin('local-deliver', {
+  //   to: config['mapCosmeapi'],
+  // }),
 ];
 
 
@@ -150,7 +153,7 @@ fis.match('{**.css,*.html:css}', {
 });
 
 const cacheDir = path.join(path.dirname(__dirname), '.cache');
-
+const qiniuDomain = config['qiniuDomain'].replace('http://', '//');
 
 // 资源配置
 const resourcesConfig = {
@@ -166,26 +169,29 @@ const resourcesConfig = {
     }),
     useHash: true,
     useMap: false,
-    domain: config['qiniuDomain'],
+    domain: qiniuDomain,
     deploy: fis.plugin('qiniu', config['qiniuConfig']),
   },
   // css上传资源服务器
   css: {
     optimizer: fis.plugin('clean-css'),
-    domain: config['urlAssets'],
+    domain: qiniuDomain,
     useHash: true,
     useMap: true,
-    deploy: deployConfig,
+    deploy: resourcesReplace.concat([fis.plugin('qiniu', config['qiniuConfig'])]),
   },
   // css上传资源服务器
   js: {
     optimizer: fis.plugin('uglify-js'),
-    domain: config['urlAssets'],
+    domain: qiniuDomain,
     useHash: true,
     useMap: true,
-    deploy: deployConfig,
+    deploy: fis.plugin('qiniu', config['qiniuConfig']),
   },
   map: {
+    deploy: deployMap,
+  },
+  html: {
     deploy: deployMap,
   },
 };
@@ -200,6 +206,7 @@ function inti() {
     .match('{**.css,*.html:css}', resourcesConfig.css)
     .match('*.{png,jpg,gif}', resourcesConfig.image)
     .match('map.json', resourcesConfig.map)
+    .match('*.html', resourcesConfig.html)
     .match('/node_modules/**.js', {
       useMap: false,
     });
@@ -207,5 +214,5 @@ function inti() {
 
 exports.resourcesConfig = resourcesConfig;
 exports.resourcesReplace = resourcesReplace;
-exports.pushServer = pushServer;
+// exports.pushServer = pushServer;
 exports.init = inti;
